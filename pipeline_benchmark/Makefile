@@ -8,7 +8,7 @@ CC=gcc
 # set the compiler flags
 # -fno-tree-vectorize to avoid vector instructions
 # -g to add debug information to the binary executable
-CFLAGS=-O0 -fno-tree-vectorize -g
+CFLAGS=-O2 -fno-tree-vectorize -g
 
 .DEFAULT: all
 all:    benchmark-double-add \

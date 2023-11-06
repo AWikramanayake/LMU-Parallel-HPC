@@ -12,12 +12,12 @@
 /* macro to define the operation (+, *, /) to avoid duplicated code 
    usage example: a = b _OP_ c */
 #if !(defined _OP_)
-#    define _OP_ /
+#    define _OP_ +
 #endif
 
 /* macro to print the operation */
 #if !(defined _OP_STRING_)
-#    define _OP_STRING_ "div"
+#    define _OP_STRING_ "add"
 #endif
 
 static long long timestamp();
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     double result = 1;
 
     /* number of loop iterations */
-    long long num_iter = 100000000;
+    long long num_iter = 1000000000;
 
     /* number of operations per iteration */
     long long ops_per_iter = 12; // ENTERED BY AKSHATH
@@ -48,54 +48,54 @@ int main(int argc, char *argv[])
 
     pin_thread(0);
 
+    double d1 = 1, d2 = 1, d3 = 1, d4 = 1, d5 = 1, d6 = 1, d7 = 1, d8 = 1 , d9 = 1 , d10 = 1, d11 = 1, d12 =1;
+    double factor = 0.123;
+
     /* pipelining scenario */
     ts_start = timestamp();
     for (int i = 0; i < num_iter; i++) {
-        result = 0;
-        // perform 'ops_per_iter' pipeline-able operations
-        result = 1 _OP_ 1;
-        result = 1 _OP_ 1;
-        result = 1 _OP_ 1;
-        result = 1 _OP_ 1;
-        result = 1 _OP_ 1;
-        result = 1 _OP_ 1;
-        result = 1 _OP_ 1;
-        result = 1 _OP_ 1;
-        result = 1 _OP_ 1;
-        result = 1 _OP_ 1;
-        result = 1 _OP_ 1;
-        result = 1 _OP_ 1;
+        d1  = d1  _OP_ factor;
+        d2  = d2  _OP_ factor;
+        d3  = d3  _OP_ factor;
+        d4  = d4  _OP_ factor;
+        d5  = d5  _OP_ factor;
+        d6  = d6  _OP_ factor;
+        d7  = d7  _OP_ factor;
+        d8  = d8  _OP_ factor;
+        d9  = d9  _OP_ factor;
+        d10 = d10 _OP_ factor;
+        d11 = d11 _OP_ factor;
+        d12 = d12 _OP_ factor;
     }
     ts_end = timestamp();
 
-    result = result + 1;
+    result = d1 + d2 + d3 + d4 + d5 + d6;
+    result += d7 + d8 + d9 + d10 + d11 + d12;
 
     nseconds    = (ts_end - ts_start);
     time_per_op = (double)nseconds / num_ops;
 
-    printf("%s,%10d,%s,%f\n", _OP_STRING_, (unsigned)result, "pipelined", time_per_op);
+    printf("%s,%10d,%s,%f\n", _OP_STRING_, (unsigned)result, "    pipelined", time_per_op);
 
     /* no pipelining scenario */
     ts_start = timestamp();
     for (int i = 0; i < num_iter; i++) {
-        result = 0;
-        // perform 'ops_per_iter' non-pipeline-able operations
-        result = result _OP_ 1;
-        result = result _OP_ 1;
-        result = result _OP_ 1;
-        result = result _OP_ 1;
-        result = result _OP_ 1;
-        result = result _OP_ 1;
-        result = result _OP_ 1;
-        result = result _OP_ 1;
-        result = result _OP_ 1;
-        result = result _OP_ 1;
-        result = result _OP_ 1;
-        result = result _OP_ 1;
+        d1 = d1 _OP_ factor;
+        d1 = d1 _OP_ factor;
+        d1 = d1 _OP_ factor;
+        d1 = d1 _OP_ factor;
+        d1 = d1 _OP_ factor;
+        d1 = d1 _OP_ factor;
+        d1 = d1 _OP_ factor;
+        d1 = d1 _OP_ factor;
+        d1 = d1 _OP_ factor;
+        d1 = d1 _OP_ factor;
+        d1 = d1 _OP_ factor;
+        d1 = d1 _OP_ factor;
     }
     ts_end = timestamp();
 
-    result = result + 1;
+    result = d1;
 
     nseconds    = (ts_end - ts_start);
     time_per_op = (double)nseconds / num_ops;
