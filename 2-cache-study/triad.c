@@ -49,9 +49,11 @@ int run_triad(size_t n, FILE** writeFile)
 int main()
 {
     size_t n, time, mflops;
+
+    // x-axis points chosen to be roughly evenly spaced on a log-linear graph
+    // note that each value is a size_t variable (8 bytes) and there are 4 vectors a, b, c, d, so the graph should be labeled accordingly
     size_t xpoints[] = {2, 3, 4, 5, 8, 10, 14, 20, 28, 40, 56, 79, 100, 141, 200, 282, 398, 562, 794, 1000, 1413, 1995, 2818,
                 3981, 5623, 7943, 10000, 14125, 19953, 28184, 39811, 56234, 79433};
-
                 //, 100000, 141254, 199526, 281838, 398107, 562341, 794328, 1000000};
 
     FILE *fpt;
