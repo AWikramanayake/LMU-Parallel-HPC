@@ -1,5 +1,35 @@
 # LMU-Parallel-HPC
-A repository for code for my 'Parallel and High Performance Computing' course
+A repository for code for my 'Parallel and High Performance Computing' course. Experiments conducted so far:
+1. Pipelined vs Non-Pipelined Loops
+2. Cache Size
+<br>
+
+
+## Experiment 2: Optimizing for Cache Size
+This experiment aims to study the impact of memory operations on computation time, specifically the performance penalty incurred when accessing higher latency memory (L1 -> L2 -> L3 -> main memory). This is done by performing the Schönauer vector triad benchmark, given by: <code> A[i] = B[i] + C[i] * D[i]</code> with increasingly large vectors. As higher latency memory is used, the time taken for memory operations dominates the overall process time, and we see drops of orders of magnitude in computation speed.<br>
+
+To remove other potential bottlenecks, this benchmark is run with aggressive optimization (<code>-O3 -march=native</code>) but steps are taken to avoid dead code elimination by the compiler which would invalidate the results.
+
+<br>
+<p align="center">
+<img src="https://raw.githubusercontent.com/AWikramanayake/LMU-Parallel-HPC/main/misc_assets/triad_intel.png" width="600"/>
+</p>
+<p align="center">
+Fig 1: Triad results with Intel i3-1005g1</br>
+</p>
+</br>
+
+<br>
+<p align="center">
+<img src="https://raw.githubusercontent.com/AWikramanayake/LMU-Parallel-HPC/main/misc_assets/triad_M2.png" width="600"/>
+</p>
+<p align="center">
+Fig 1: Triad results with Apple M2</br>
+</p>
+</br>
+
+As expected, we see a shard drop in computational efficiency whenever the vector size exceeds the size of one of the caches.<br><br>
+
 
 ## Experiment 1: Pipelined vs. Non-pipelined Loops
 The goal of this experiement is to study the performance improvements offered by [pipelining](https://cs.stanford.edu/people/eroberts/courses/soco/projects/risc/pipelining/index.html).
