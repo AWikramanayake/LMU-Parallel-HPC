@@ -24,7 +24,7 @@ Fig 1: Triad results with Intel i3-1005g1</br>
 <img src="https://raw.githubusercontent.com/AWikramanayake/LMU-Parallel-HPC/main/misc_assets/triad_M2.png" width="600"/>
 </p>
 <p align="center">
-Fig 1: Triad results with Apple M2</br>
+Fig 2: Triad results with Apple M2</br>
 </p>
 </br>
 
